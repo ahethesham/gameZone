@@ -1,0 +1,187 @@
+html{
+    scrollbar-color: black black;
+
+}
+body{
+    background-color: black;
+    background-image: url('github.png');
+    background-repeat: no-repeat,no-repeat;
+    background-position-x:left;
+    background-position-y: top;
+    background-size: 300px 2000px;
+    scrollbar-color: black black;
+
+
+}
+.Heading{
+    width:1000px;
+    position: relative;
+}
+hr{
+   width:100%;
+   height: 0.01cm;
+   background-color: rgb(12, 12, 14);
+   color:darkblue;
+   cursor: pointer;
+}
+.gitcat{
+    float: left;
+    background-image: url('gitcat.png');
+    background-repeat: no-repeat,no-repeat;
+    background-position-x:center;
+    background-position-y: top;
+    background-size: 50px 50px;
+    position: relative;
+    height:50px;
+    width:50px;
+}
+.githeading{
+    display: inline-block;
+    color:white;
+    top:15px;
+    position: relative;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.searchbar{
+    color: white;
+    font-size: larger;
+    position: relative;
+    height:30px;
+    width:150px;
+    float: right;
+    border-radius: 10px;
+    background-color: black;
+    left:600px;
+    top:5px;
+}
+.searchicon{
+    position: relative;
+    float: right;
+    height:30px;
+    width:30px;
+    background-image: url('search.png');
+    background-repeat: no-repeat,no-repeat;
+    background-position-x:center;
+    background-position-y: center;
+    background-size: 25px 25px;
+    background-color: black;
+    border-radius: 10px;
+    left:600px;
+    top:8px;
+    border:1px solid whitesmoke
+}
+.image{
+  position: absolute;
+  left:800px;
+  height: auto;
+}
+
+
+.Username{
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+    color: white;
+    left:150px;
+    top:70px;
+    height: 30px;
+    width:15%;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+}
+
+.created_on{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    left:150px;
+    top:70px;
+    position: relative;
+    height: 30px;
+    width:15%;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+}
+.name{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    left:150px;
+    top:70px;
+    position: relative;
+    height: 30px;
+    width:15%;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+
+}
+.followers_but{
+    text-align: center;
+    font-size: 15px;
+    position: relative;
+    color: white;
+    left:80px;
+    height: 30px;
+    top:80px;
+    width:3%;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+    background-color: black;
+    
+}
+.followers_list{
+    overflow-y: scroll;
+    width:90%;
+    left:50px;
+    top:450px;
+    position: absolute;
+    scrollbar-color: #333234 black;
+    font-size: medium;
+
+}
+
+.repos{
+    text-align: center;
+    font-size: 15px;
+    position: relative;
+    color: white;
+    left:230px;
+    height: 30px;
+    top:80px;
+    width:3%;
+    border-radius: 10px;
+    border: 1px solid darkgrey;
+    display: inline-block;
+    background-color: black;
+}
+.repos_list{
+    overflow-y: scroll;
+    width:90%;
+    left:50px;
+    top:450px;
+    position: absolute;
+    scrollbar-color: black black;
+}
+.viewmore{
+    color:white;
+    position: relative;
+    height: 50px;
+    width: 100px;
+    top:110px;
+    font-weight: bolder;
+    left:400px;
+}
+.Profile_link{
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    left:100px;
+    top:100px;
+    position: relative;
+    height: 40px;
+    width:30%;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
+}
