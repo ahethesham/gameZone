@@ -1,11 +1,33 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import './index.css'
+import brick from './brick.png'
 import img from './start.png'
 import pause from './pause.png'
-import brick from './brick.png'
 import image from './game_logo.png'
+import fb_background from './fb_background.png'
 let board=[],fakelen;
+let t={float:'left',backgroundImage: `url(${image})`,
+backgroundRepeat: 'norepeat,norepeat',
+backgroundPositionx:'center',
+backgroundPositiony: 'top',
+backgroundSize: '50px 50px',
+height: '50px',
+right:'1600px',
+bottom:'620px',
+width:'50px',
+position: 'absolute'}
+let prev={float:'left',backgroundImage: `url(${image})`,
+backgroundRepeat: 'norepeat,norepeat',
+backgroundPositionx:'center',
+backgroundPositiony: 'top',
+backgroundSize: '50px 50px',
+height: '50px',
+right:'1600px',
+bottom:'620px',
+width:'50px',
+position: 'absolute'}
+let laddress;
 let sem=1,r,mounttest=0;
 let align=0,s;
 for(let i=0;i<26;i++){
@@ -30,6 +52,16 @@ for(let i=2;i<4;i++){
    }
 }
 }
+function updatebrick(){
+  let width=window.innerWidth,height=window.innerHeight
+  let h=(2.25)*(height/100)
+  let w=(0.89)*(width/100)
+  let st=`height:${h}px;
+    width:${w}px;
+    position:relative;`
+
+  return st;
+}
 function raise(){
   if(mounttest==0){align=0;return;}
   setTimeout(()=>{
@@ -37,17 +69,20 @@ function raise(){
 
       if(sem==1){raise();return;}
       if(align>0){align--;raise();return;}
-     col2=ball.shift()
+     col2=ball[0]
      
      for(let i=2;i<4;i++){
+      if(      r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].childNodes.length>0){end(()=>{},700);return;}
      r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.backgroundColor=''
      }
+     ball.shift()
+
      b=ball[ball.length-1]+1;
      if(b==26)b=25;
      ball.push(b);
 
      for(let i=2;i<4;i++){
-      if(      r.childNodes[0].childNodes[0].childNodes[b].childNodes[i].childNodes.length>0){alert("Game over");end(0);return;}
+      if(      r.childNodes[0].childNodes[0].childNodes[b].childNodes[i].childNodes.length>0){end(()=>{},700);return;}
       r.childNodes[0].childNodes[0].childNodes[b].childNodes[i].style.backgroundColor='grey'
       }
     raise();
@@ -65,6 +100,7 @@ function util(){
     fakelen=queue[0][1];
     queue.shift()
     for(let i=0;i<fakelen;i++){
+      
       r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].removeChild(r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild)
 
     }
@@ -87,39 +123,52 @@ function util(){
   if(col1==49)len=rand()
   else
   len=queue[queue.length-1][1]
+  queue.push([col1,len])
   for(let i=0;i<len;i++){
    let t=document.createElement("img")
-t.src=brick
-t.className='brick';
+   t.src=brick
+t.style.cssText=updatebrick()
+if(r.childNodes[0].childNodes[0].childNodes[i].childNodes[col1].style.backgroundColor=='grey'){end(()=>{},700);return;}
     r.childNodes[0].childNodes[0].childNodes[i].childNodes[col1].appendChild(t);
 
   }
   for(let i=len+7;i<26;i++){
    let t=document.createElement("img")
-t.src=brick
-t.className='brick';
+   t.src=brick;
+   t.style.cssText=updatebrick()
+   
+   //'height:20px;width:15px;position: relative;'
+if(r.childNodes[0].childNodes[0].childNodes[i].childNodes[col1].style.backgroundColor=='grey'){end(()=>{},700);return;}
+
     r.childNodes[0].childNodes[0].childNodes[i].childNodes[col1].appendChild(t);
   }
-  queue.push([col1,len]);
   col1--;
    if(col1==24)flag=1;
    if(flag==1){
     if(col3==49)len=rand();
     else len=queue2[queue2.length-1][1];
+    queue2.push([col3,len]);
+
     for(let i=0;i<len;i++){
      let t=document.createElement("img")
-t.src=brick
-t.className='brick';
+     t.src=brick;
+     t.style.cssText=updatebrick()
+    // 'height:20px;width:15px;position: relative;'
+if(    r.childNodes[0].childNodes[0].childNodes[i].childNodes[col3].style.backgroundColor=='grey'){end(()=>{},700);return;}
+
       r.childNodes[0].childNodes[0].childNodes[i].childNodes[col3].appendChild(t)
   
     }
     for(let i=len+7;i<26;i++){
     let t=document.createElement("img")
-t.src=brick
-t.className='brick';
+    t.src=brick;
+    t.style.cssText=updatebrick()
+   // 'height:20px;width:15px;position: relative;'
+if(    r.childNodes[0].childNodes[0].childNodes[i].childNodes[col3].style.backgroundColor=='grey'){end(()=>{},700);return;}
+
       r.childNodes[0].childNodes[0].childNodes[i].childNodes[col3].appendChild(t)
     }
-    queue2.push([col3,len]);
+   // queue2.push([col3,len]);
     col3--;
     if(col3<0)col3=49;
    }
@@ -128,8 +177,9 @@ t.className='brick';
   util();
 },60);
 }
-function end(fn){
+function end(fn,timer){
 sem=1
+setTimeout(()=>{
  s.handle();
   mounttest=0;
 
@@ -139,10 +189,14 @@ sem=1
     fakelen=queue[0][1];
     queue.shift()
     for(let i=0;i<fakelen;i++){
+      let child=r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild
+      if(child)
       r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].removeChild(r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild)
 
     }
     for(let i=fakelen+7;i<26;i++){
+      let child=r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild
+      if(child)
       r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].removeChild(r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild)
     }
   }
@@ -151,10 +205,14 @@ sem=1
     fakelen=queue2[0][1];
     queue2.shift()
     for(let i=0;i<fakelen;i++){
+      let child=r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild
+      if(child)
       r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].removeChild(r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild)
 
     }
     for(let i=fakelen+7;i<26;i++){
+      let child=r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild
+      if(child)
       r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].removeChild(r.childNodes[0].childNodes[0].childNodes[i].childNodes[col2].lastChild)
     }
   }
@@ -169,13 +227,44 @@ sem=1
   len=7;
   flag=0;
   fn()
-  return;
+  return;},timer)
 
+}
+function updateboard(){
+  let width=window.innerWidth,height=window.innerHeight;
+  let board_width=(44.64)*(width/100)
+  let board_height=(67.64)*(height/100)
+  let img_width=(35.71)*(width/100)
+  let t=(19.16)*(height/100)
+  let l=(29.76)*(width/100)
+  let ballboard={
+    height:`${board_height}px`,
+    width: `${board_width}px`,
+    position: 'relative',
+    borderCollapse: 'collapse',
+    borderSpacing:'0',
+  backgroundImage: `url(${fb_background})`,
+  backgroundRepeat: 'no-repeat,no-repeat',
+  backgroundSize: `${img_width}px ${board_height}px`,
+  backgroundPosition: '100%',
+  backgroundColor: 'transparent',
+  border: '1px solid grey',
+  top:`${t}px`,
+  left:`${l}px`
+  }
+  return ballboard
 }
 export class BallBoard extends React.Component{
  constructor(props){
   super(props)
+  this.state={board:updateboard(),s:t}
   this.exit=this.exit.bind(this)
+  this.resize=this.resize.bind(this)
+  window.addEventListener('resize',this.resize);
+  laddress=this
+ }
+ resize(){
+  this.setState((prev)=>{return {board:updateboard(),s:prev.s}})
  }
   componentDidMount(){
     r=document.getElementById('root');
@@ -185,32 +274,37 @@ export class BallBoard extends React.Component{
       align++;
       sem=1;
       col2=ball[ball.length-1];
-      ball.pop();
       for(let i=2;i<4;i++){
+        if(      r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].childNodes.length>0){end(()=>{},700);return;}
         r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.backgroundColor='';
         r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.color='';
         }
+        ball.pop();
+
       col2=Math.max(col2-2,0);
       ball.unshift(col2);
 
       for(let i=2;i<4;i++){
-        if(r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].childNodes.length>0){alert("Game over");end(0);return;}
+        if(r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].childNodes.length>0){end(()=>{},700);return;}
 
         r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.backgroundColor='grey';
         r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.color='grey';
         }
 
       col2=ball[ball.length-1];
-      ball.pop();
+      //ball.pop();
       for(let i=2;i<4;i++){
+        if(      r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].childNodes.length>0){end(()=>{},700);return;}
         r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.backgroundColor='';
         r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.color='';
         }
+        ball.pop();
+
       col2=Math.max(col2-2,0);
       ball.unshift(col2);
 
       for(let i=2;i<4;i++){
-        if(      r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].childNodes.length>0){alert("Game over");end(0);return;}
+       if(      r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].childNodes.length>0){end(()=>{},700);return;}
 
         r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.backgroundColor='grey';
         r.childNodes[0].childNodes[0].childNodes[col2].childNodes[i].style.color='grey';
@@ -224,92 +318,156 @@ export class BallBoard extends React.Component{
   
   }
   exit(){
-    end(this.props.func)
+    end(this.props.func,0)
   }
   render(){
     return(
       <div>
-      <div className='BallBoard'  >
+      <div style={this.state.board} >
       {board.map((arr,index)=><Ballrow arr={arr} row={index}/> )}
       </div>
-      <div style={{ float: 'left',
-  backgroundImage: `url(${image})`,
-  backgroundRepeat: 'norepeat,norepeat',
-  backgroundPositionx:'center',
-  backgroundPositiony: 'top',
-  backgroundSize: '50px 50px',
-  height: '50px',
-  right:'1600px',
-  bottom:'620px',
-  width:'50px',
-  position: 'absolute'}}onClick={this.exit}></div>
+      <div style={this.state.s}onClick={this.exit}></div>
       <Start/>
       </div>
     )
   }
 }
-
+function updateballrow(){
+  let width=window.innerWidth,height=window.innerHeight
+  let h=(2.48)*(height/100)
+  let w=(44.64)*(width/100)
+  let ballrow={
+    height:`${h}px`,
+    width: `${w}px`,
+    position:'relative',
+    display:'inline-block',
+    borderCollapse:'collapse',
+    borderSpacing:'0',
+    padding:'0'
+  }
+  return ballrow;
+}
 class Ballrow extends React.Component{
   constructor(props){
     super(props)
+    this.state={st:updateballrow()}
+    this.resize=this.resize.bind(this)
+    window.addEventListener('resize',this.resize)
+  }
+  resize(){
+    this.setState({st:updateballrow()})
   }
   render(){
     return(
-      <div className='Ballrow' cellspacing='0'>
+      <div style={this.state.st} cellspacing='0'>
         {this.props.arr.map((element,col)=><Mat row={this.props.row} col={col}/>)}
       </div>
     )
   }
 }
+function updatemat(){
+  let width=window.innerWidth,height=window.innerHeight
+  let h=(2.254)*(height/100)
+  let w=(0.892)*(width/100) 
+  let st={
+    height:`${h}px`,
+width:`${w}px`,
+position:'relative',
+display: 'inline-block',
+borderCollapse: 'collapse',
+borderSpacing:'0',
+padding:'0',
+  }
+  return st
+}
 class Mat extends React.Component{
+  constructor(props)
+  {
+    super(props)
+    this.state={st:updatemat()}
+    this.resize=this.resize.bind(this)
+    window.addEventListener('resize',this.resize)
+  }
+  resize(){
+    this.setState({st:updatemat()});
+  }
   render(){
     return(
-      <div className='Mat' cellspacing='0'>
+      <div style={this.state.st}cellspacing='0'>
       </div>
     )
   }
 }
-
+function updatebutton1(){
+  let width=window.innerWidth,height=window.innerHeight
+let h=(22.54)*(height/100)
+let w=(11.90)*(width/100)
+let b=(62)*(height/100)
+let l=(47.61)*(width/100)
+let img_bh=(11.27)*(height/100);
+let img_bw=(5.95)*(width/100);
 let butstyle={
-  fontSize: '40px',
-  height:'200px',
-  width:'200px',
-  bottom:'550px',
-  left:'800px',
+  height:`${h}px`,
+  width:`${w}px`,
+  bottom:`${b}px`,
+  left:`${l}px`,
   backgroundImage: `url(${img})`,
   backgroundRepeat: 'no-repeat no-repeat',
-  backgroundSize: '100px 100px',
+  backgroundSize: `${img_bw}px ${img_bh}px`,
   position: 'relative',
   backgroundColor: 'transparent',
 }
+return butstyle
+}
+function updatebutton2(){
+  let width=window.innerWidth,height=window.innerHeight
+  let h=(22.54)*(height/100)
+  let w=(11.90)*(width/100)
+  let b=(62)*(height/100)
+  let l=(47.61)*(width/100)
+  let img_bh=(11.27)*(height/100);
+  let img_bw=(5.95)*(width/100);
 let pausebut={
-  height:'100px',
-  width:'100px',
- bottom:'550px',
- left:'800px',
+  height:`${h}px`,
+  width:`${w}px`,
+  bottom:`${b}px`,
+  left:`${l}px`,
   backgroundImage: `url(${pause})`,
   backgroundRepeat: 'no-repeat no-repeat',
-  backgroundSize: '100px 100px',
+  backgroundSize: `${img_bw}px ${img_bh}px`,
   position: 'relative',
   backgroundColor: 'transparent',
+}
+return pausebut
 }
 class Start extends React.Component{
   constructor(){
     super()
     this.handle=this.handle.bind(this);
-    this.state={play:false,st:pausebut}
+    this.state={play:false,st:updatebutton2()}
+    this.resize=this.resize.bind(this)
+    window.addEventListener('resize',this.resize)
     s=this
+  }
+  resize(){
+    this.setState((prev)=>{if(prev.play==true){
+      return {play:true,st:updatebutton1()}
+    }
+    return {play:false,st:updatebutton2()}
+  })
   }
   handle(){
     align=0;
     if(this.state.play==false){
       sem=0;
+      laddress.setState({s:prev})
       if(mounttest==0){mounttest=1;align=0;util();set();raise()};
-      this.setState({play:true,st:butstyle})
+      this.setState({play:true,st:updatebutton1()})
     }
     else{
       sem=1;
-      this.setState({play:false,st:pausebut})
+      laddress.setState({s:t})
+      this.setState({play:false,st:updatebutton2()})
     }
     
   }

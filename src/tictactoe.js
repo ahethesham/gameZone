@@ -353,7 +353,10 @@ function help3(b){
               {
                 b[k][p]='X';
                 let temp=JSON.parse(JSON.stringify(b));
-                res.push(help2(temp));
+                let temp2=help2(temp)
+                temp2.v[k][p]=' ';
+                temp2.v[i][j]=' ';
+                res.push(temp2);
                 b[k][p]=' ';
               }
             }
@@ -399,7 +402,12 @@ function play(){
              for(let i=0;i<b.length;i++)
              {
               for(let j=0;j<b[i].length;j++)
+              {
+                 if(b[i][j]==' ')
+                 address[i][j].setState({element:'.'})
+                 else
                  address[i][j].setState({element:b[i][j]})
+              }
              }
           }
     }
@@ -411,8 +419,11 @@ function play(){
          b=JSON.parse(JSON.stringify(k.v));
          for(let i=0;i<b.length;i++){
             for(let j=0;j<b[i].length;j++){
-                address[i][j].setState({element:b[i][j]});
-            }
+              if(b[i][j]==' ')
+              address[i][j].setState({element:'.'})
+              else
+              address[i][j].setState({element:b[i][j]})       
+                 }
          } 
        }
    
@@ -425,17 +436,60 @@ function play(){
     
      for(let i=0;i<b.length;i++){
         for(let j=0;j<b[i].length;j++){
-           // alert(b[i][j]);
-            address[i][j].setState({element:b[i][j]});
-        }
+          if(b[i][j]==' ')
+          address[i][j].setState({element:'.'})
+          else
+          address[i][j].setState({element:b[i][j]})        }
      }    
    }
     
 }
+function updateboard(){
+  let width=window.innerWidth,height=window.innerHeight;
+  let t=(11.27)*(height/100)
+  let l=(35.71)*(width/100)
+  let w=(23.8)*(width/100)
+  let h=(45.09)*(height/100)
+  let st={
+    position:'relative',
+    top:`${t}px`,
+    left:`${l}px`,
+    height:`${h}px`,
+    width:`${w}px`,
+    display:'inline-block'
+  }
+  return st;
+}
+function updateexit(){
+  let width=window.innerWidth,height=window.innerHeight;
+  let bg_y=(5.63)*(height/100)
+  let bg_x=(2.97)*(width/100)
+  let r=(56.54)*(width/100)
+  let b=(47.35)*(height/100)
+  let style={ float: 'left',
+  backgroundImage: `url(${image})`,
+  backgroundRepeat: 'norepeat,norepeat',
+  backgroundPositionx:'center',
+  backgroundPositiony: 'top',
+  backgroundSize: `${bg_x}px ${bg_y}px`,
+  height: `${bg_y}px`,
+  right:`${r}px`,
+  bottom:`${b}px`,
+  width:`${bg_x}px`,
+  position: 'absolute'}
+  return style;
+
+}
 export class TicTac extends React.Component{
     constructor(props){
         super(props)
+        this.state={board:updateboard(),ex:updateexit()}
         this.exit=this.exit.bind(this);
+        this.resize=this.resize.bind(this)
+        window.addEventListener('resize',this.resize)
+    }
+    resize(){
+      this.setState({board:updateboard(),ex:updateexit()})
     }
 exit(){
    b=[];address=[]
@@ -449,30 +503,44 @@ for(let i=0;i<3;i++){
 }
     render(){
         return(
-            <div className='Tictac'>
+            <div style={this.state.board}>
                { b.map((arr,i)=><Ticrow i={i} arr={arr}/>)}
-               <div style={{ float: 'left',
-  backgroundImage: `url(${image})`,
-  backgroundRepeat: 'norepeat,norepeat',
-  backgroundPositionx:'center',
-  backgroundPositiony: 'top',
-  backgroundSize: '50px 50px',
-  height: '50px',
-  right:'950px',
-  bottom:'420px',
-  width:'50px',
-  position: 'absolute'}} onClick={this.exit}></div>
+               <div style={this.state.ex} onClick={this.exit}></div>
             </div>
         )
     }
 }
+function updaterow(){
+  let width=window.innerWidth/100,height=window.innerHeight/100
+ // let t=Math.sqrt(width*width+height*height);
+  let font=Math.min((3.38)*(height),(1.78)*width)
+  let h=(14.65)*height
+  let w=(22.61)*(width)
+  let b=Math.min((0.33)*height,(0.17)*width)
+  let st={
+    position:'relative',
+    display:'inline-block',
+    height:`${h}px`,
+    width: `${w}px`,
+    fontSize:`${font}px`,
+    border:`${b}px solid wheat`,
+    overflow:`auto`,
+  }
+  return st;
+}
 class Ticrow extends React.Component{
     constructor(props){
         super(props)
+        this.state={st:updaterow()}
+        this.resize=this.resize.bind(this)
+        window.addEventListener('resize',this.resize)
+    }
+    resize(){
+      this.setState({st:updaterow()});
     }
     render(){
         return(
-            <div className='ticrow'>
+            <div style={this.state.st}>
                 {this.props.arr.map((element,j)=><Ticelement e={element} i={this.props.i} j={j}/>)}
            
   </div>
@@ -480,21 +548,60 @@ class Ticrow extends React.Component{
     }
 }
 let current,row,col
+function updateele(){
+  let width=window.innerWidth/100,height=window.innerHeight/100;
+  let h=(14.09)*(height)
+  let w=(7.14)*width
+  let f=Math.min((11.27)*height,(5.95)*width)
+  let b=Math.min((0.22)*height,(0.11)*width)
+  let st={
+    position: 'relative',
+    display: 'inline-flex',
+    height:`${h}px`,
+    width:`${w}px`,
+    border:`${b}px solid wheat`,
+    textAlign: 'top',
+    fontSize: `${f}px`,
+    fontVariantPosition: 'normal',
+    color:'aliceblue',
+    overflowWrap:'break-word',
+    wordWrap    : 'break-word',
+
+  }
+  return st;
+}
+function updatetext(){
+  let width=window.innerWidth/100,height=window.innerHeight/100
+  let h=(1.01)*height;
+  let w=(5.95)*width
+  let st={
+    position:'relative',height:`${h}px`,width:`${w}px`,
+    textAlign:'top',
+  }
+  return st;
+}
 class Ticelement extends React.Component{
     constructor(props){
         super(props)
-        this.state={element:' '}
+        this.state={element:'.',st:updateele(),textst:updatetext()}
         address[this.props.i][this.props.j]=this
         this.handleclick=this.handleclick.bind(this)
         this.dragover=this.drageover.bind(this)
         this.dragging=this.dragging.bind(this)
+        this.resize=this.resize.bind(this)
+        window.addEventListener('resize',this.resize)
+    }
+    resize(){
+      this.setState((prev)=>{
+        return {element:prev.element,st:updateele(),testst:updatetext()}
+      })
     }
     handleclick(){
         input++;
-        if(input>3||this.state.element!=' ')return;
+        if(input>3||this.state.element!='.')return;
         
         b[this.props.i][this.props.j]='X'
-        this.setState({element:'X'})
+        this.setState({element:'X',st:updateele(),textst:updatetext()})
         play()
     
     }
@@ -506,17 +613,17 @@ class Ticelement extends React.Component{
     }
     drageover(){
         input++;
-        if(this.state.element!=' '||b[row][col]==' ')return;
-        b[row][col]=' '
+        if(this.state.element!='.'||b[row][col]=='.')return;
+        b[row][col]='.'
         b[this.props.i][this.props.j]=current
-        address[row][col].setState({element:' '})
-        this.setState({element:current})
+        address[row][col].setState({element:'.',st:updateele(),textst:updatetext()})
+        this.setState({element:current,st:updateele(),textst:updatetext()})
         play()
     }
     render(){
         return(
-            <div className='Ticelement' onClick={this.handleclick} draggable='true' onDrag={this.dragging} onDragLeave={this.dragover}>
-                <text style={{position:'relative',height:'90px',width:'100px',textAlign:'center'}}>
+            <div style={this.state.st} onClick={this.handleclick} draggable='true' onDrag={this.dragging} onDragLeave={this.dragover}>
+                <text style={this.state.textst}>
                 {this.state.element}
                 </text>
             </div>

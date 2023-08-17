@@ -146,19 +146,20 @@ export class Sudoku extends React.Component{
             <div className="Sudoku">
             {util.map((row,index)=><Row arr={row} r={index}/>)}
             </div>
-            <button className='ansButton' onClick={this.handleans}>answer</button>
-            <button className='verifyButton' onClick={this.handlever}>submit</button>
+            <div className='ansButton' onClick={this.handleans}>answer</div>
+            <div className='verifyButton' onClick={this.handlever}>submit</div>
+            
             <div style={{ float: 'left',
   backgroundImage: `url(${image})`,
   backgroundRepeat: 'norepeat,norepeat',
   backgroundPositionx:'center',
   backgroundPositiony: 'top',
   backgroundSize: '50px 50px',
-  bottom:'580px',
+  bottom:'550px',
   height: '50px',
   width:'50px',
   position: 'absolute'}} onClick={this.exit}></div>
-  <hr style={{bottom:'550px',position:'absolute'}}/>
+  <hr style={{bottom:'520px',position:'absolute'}}/>
            </div>
         )
     }

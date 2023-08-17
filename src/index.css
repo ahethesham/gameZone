@@ -11,7 +11,7 @@ body {
     background-repeat: no-repeat,no-repeat;
   background-position-x:left;
   background-position-y: top;
-  background-color: black;
+  background-color:black;
  
   position: relative;
 }
@@ -20,91 +20,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.Heading{
-
-    width:1000px;
-    position: relative;
-
-}
-hr{
-  width:1700px;
-  height: 0.01cm;
-  background-color: rgb(61, 61, 74);
-  color:darkblue;
-  cursor: pointer;
-}
-.glogo{
-  float: left;
-  background-image: url('game_logo.png');
-  background-repeat: no-repeat,no-repeat;
-  background-position-x:center;
-  background-position-y: top;
-  background-size: 50px 50px;
-  position: relative;
-  height:50px;
-  width:50px;
-}
-.gheading{
-  display: inline-block;
-  color:white;
-  top:15px;
-  position: relative;
-  font-size: 20px;
-  font-weight: bolder;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-.Board{
-  
-  top:210px;
-  width:900px;
-  position: relative;
-  left:400px;
-  height:600px;
-  overflow: auto;
-  border: 1px solid rgb(72, 71, 71);
-}
-.Element{
-  position: relative;
-  float: left;
-  height:18px;
-  width:16px;
-  background-color:black;
-border:1px solid black;
-border-radius: 6px;
-}
-
-.Pause{
-  font-size: 40px;
-  height:130px;
-  width:200px;
-  position: relative;
-  background-color: beige;
-  top:80px;
-  float: left;
-  left:30px;
-}
-
-.Row{
-  position: relative;
-  width:700px;
-  display: inline;
-}
-.row{
-  position: relative;
-  height:60px;
-  width:100%;
-}
-.score{
-  color: aliceblue;
-  position: relative;
-  height: 30px;
-  width: 30px;
-  left:1500px;
-  bottom: 550px;
-  font-size: 30px;
-  font-weight: bolder;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
 
 
 
@@ -120,7 +35,7 @@ border-radius: 6px;
 
 
 
-.BallBoard{
+/*.BallBoard{
   height:600px;
   width: 750px;
   position: relative;
@@ -134,10 +49,10 @@ background-color: transparent;
 border: 1px solid grey;
 top:170px;
 left:500px;
-}
+}*/
 
 
-.Ballrow{
+/*.Ballrow{
   height:22px;
   width: 750px;
   position: relative;
@@ -145,7 +60,7 @@ left:500px;
   border-collapse: collapse;
   border-spacing: 0;
   padding: 0;
-}
+}*/
 .Mat{
 height:20px;
 width:15px;
@@ -154,11 +69,6 @@ display: inline-block;
 border-collapse: collapse;
 border-spacing: 0;
 padding:0;
-}
-.brick{
-  height:20px;
-width:15px;
-position: relative;
 }
 
 
@@ -189,70 +99,6 @@ position: relative;
   width:1650px;
   font-size: 150px;
   color:aliceblue
-}
-
-
-
-
-
-
-
-.Flappybird{
-  height:250px;
- width:250px;
-position: relative;
-  left:800px;
-  top:100px;
-  background-image: url('flappybird_back.png');
-  background-size: 300px 300px;
-  background-repeat: no-repeat,no-repeat;
-  background-position-x:center;
-  background-position-y:center ;
-  box-shadow: 10px 10px 5px 12px ;
-
-
-}
-.Classicsnake{
-  height:250px;
-  width:250px;
- position: relative;
- left:400px;
- bottom:150px;
- 
-  background-image: url('snake_game.png');
-  background-size: 250px 250px;
-  background-repeat :no-repeat,no-repeat;
-  background-position-x:center;
-  background-position-y:center;
-  box-shadow: 15px 15px 10px 15px ;
-
-}
-.tictac_board{
-  height:250px;
-  width:250px;
-  bottom: 300px;
-left:400px;
- position: relative;
-  background-image: url('tictacbg.png');
-  background-size: 400px 250px;
-  background-repeat: no-repeat,no-repeat;
-  background-position-x: center;
-  background-position-y:center ;
-  box-shadow: 10px 10px 5px 12px ;
-
-}
-.sudokuboard{
-  height:250px;
-  width:250px;
-  bottom:50px;
-left:800px;
- position: relative;
-  background-image: url('sudoku.png');
-  background-size: 250px 250px;
-  background-repeat: no-repeat,no-repeat;
-  background-position-x: center;
-  background-position-y:center ;
-  box-shadow: 10px 10px 5px 12px ;
 }
 
 
@@ -317,19 +163,22 @@ left:800px;
   font-size: 40px;
 }
 .ansButton{
-  position: relative;
-  
-  width:200px;
+  position: absolute;
+  width:100px;
   height:40px;
-  bottom:480px;
+  left:1300px;
+  bottom:100px;
+  background-color: transparent;
+  color:wheat
 }
 .verifyButton{
-  position: relative;
-  
-   top:200px;
-
-  width:200px;
+  position: absolute;
+color:wheat;
+   background-color: transparent;
+  left:1300px;
+  width:100px;
   height:40px;
+  bottom:200px;
 }
 
 
@@ -338,7 +187,7 @@ left:800px;
 
 
 
-.Tictac{
+/*.Tictac{
   position: relative;
   top:100px;
   left:600px;
@@ -355,18 +204,18 @@ left:800px;
   font-size: 30px;
   border: 3px solid wheat;
   overflow: auto;
-}
-.Ticelement{
+}*/
+/*.Ticelement{
   position: relative;
   display: inline-flex;
   height:125px;
-  width:115px;
+  width:120px;
   border:2px solid wheat;
   text-align: top;
   font-size: 100px;
   font-variant-position: normal;
   color:aliceblue;
-}
+}*/
 
 
 
