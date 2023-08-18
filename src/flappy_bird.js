@@ -14,7 +14,7 @@ backgroundPositiony: 'top',
 backgroundSize: '50px 50px',
 height: '50px',
 right:'1600px',
-bottom:'620px',
+bottom:'800px',
 width:'50px',
 position: 'absolute'}
 let prev={float:'left',backgroundImage: `url(${image})`,
@@ -24,7 +24,7 @@ backgroundPositiony: 'top',
 backgroundSize: '50px 50px',
 height: '50px',
 right:'1600px',
-bottom:'620px',
+bottom:'800px',
 width:'50px',
 position: 'absolute'}
 let laddress;
