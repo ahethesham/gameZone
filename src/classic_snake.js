@@ -194,6 +194,7 @@ function updateelement(){
   height:`${h}px`,
   width:`${w}px`,
   backgroundColor:'black',
+  color:'white'
 //borderRadius:'6px'
   }
   return style;
@@ -212,6 +213,7 @@ class Element extends React.Component{
     render(){
         return (
             <div style={this.state.element} >
+              {count++}
             </div>
         )
     }
