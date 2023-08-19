@@ -28,7 +28,7 @@ for(let i=0;i<30;i++)
 function updateboard(){
   let width=window.innerWidth,height=window.innerHeight;
   let t=25*(height/100);
-  let w=(53.57)*(width/100);
+  let w=(51.19)*(width/100);
   let l=(23.80)*(width/100);
   let h=(67.64)*(height/100);
    let logobottom=(85)*(height/100);
@@ -156,7 +156,7 @@ componentDidMount(){
 }
 function updaterow(){
   let width=window.innerWidth,height=window.innerHeight;
-  let w=(41.66)*(width/100);
+  let w=(35.71)*(width/100);
   let style={  position: 'relative',
     width:`${w}px`,
     display: 'inline'}
@@ -183,8 +183,8 @@ class Row1 extends React.Component{
 }
 function updateelement(){
   let width=window.innerWidth,height=window.innerHeight;
-  let h=(2.3)*(height/100);
-  let w=(1.07)*(width/100);
+  let h=(2.254)*(height/100);
+  let w=(1.011)*(width/100);
   let r=(0.357)*(width/100);
   let b=(0.0595)*(width/100);
  // alert(h)
@@ -213,7 +213,6 @@ class Element extends React.Component{
     render(){
         return (
             <div style={this.state.element} >
-              {count++}
             </div>
         )
     }
