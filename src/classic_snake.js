@@ -41,7 +41,7 @@ function updateboard(){
     left:`${l}px`,
     height:`${h}px`,
     overflow: 'auto',
-    //border: '1px solid rgb(72, 71, 71)',
+  //border: '1px solid rgb(72, 71, 71)',
   }
   let main={
     height:`${height}`,

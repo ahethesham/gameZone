@@ -5,7 +5,7 @@ let b=[],address=[]
 let input =0;
 for(let i=0;i<3;i++){
     let t=[],u=[]
-    for(let i=0;i<3;i++){t.push(' ');u.push('')}
+    for(let i=0;i<3;i++){t.push(' ');u.push(' ')}
     b.push(t);address.push(u)
 }
 let opp="XXX",pla="000"
@@ -392,8 +392,19 @@ function play(){
           row2=Math.floor(Math.random()*3);
           col2=Math.floor(Math.random()*3);
           if(b[row2][col2]!=' ')continue;
-          b[row2][col2]='0';address[row2][col2].setState({element:'0'});break;
-        }
+          b[row2][col2]='0';
+          for(let i=0;i<b.length;i++)
+          {
+           for(let j=0;j<b[i].length;j++)
+           {
+              if(b[i][j]==' ')
+              address[i][j].setState({element:'.'})
+              else
+              address[i][j].setState({element:b[i][j]})
+           }
+          }
+          break;
+      }
     }
     else if(input==2){
         if(place(b)==0){
@@ -423,7 +434,7 @@ function play(){
               address[i][j].setState({element:'.'})
               else
               address[i][j].setState({element:b[i][j]})       
-                 }
+            }
          } 
        }
    
@@ -439,7 +450,8 @@ function play(){
           if(b[i][j]==' ')
           address[i][j].setState({element:'.'})
           else
-          address[i][j].setState({element:b[i][j]})        }
+          address[i][j].setState({element:b[i][j]})     
+         }
      }    
    }
     
@@ -496,7 +508,7 @@ exit(){
 input =0;
 for(let i=0;i<3;i++){
     let t=[],u=[]
-    for(let i=0;i<3;i++){t.push(' ');u.push('')}
+    for(let i=0;i<3;i++){t.push(' ');u.push(' ')}
     b.push(t);address.push(u)
 }
   this.props.func();
@@ -598,7 +610,7 @@ class Ticelement extends React.Component{
     }
     handleclick(){
         input++;
-        if(input>3||this.state.element!='.')return;
+        if(input>3)return;
         
         b[this.props.i][this.props.j]='X'
         this.setState({element:'X',st:updateele(),textst:updatetext()})
@@ -613,8 +625,8 @@ class Ticelement extends React.Component{
     }
     drageover(){
         input++;
-        if(this.state.element!='.'||b[row][col]=='.')return;
-        b[row][col]='.'
+        if(this.state.element!='.'||b[row][col]==' ')return;
+        b[row][col]=' '
         b[this.props.i][this.props.j]=current
         address[row][col].setState({element:'.',st:updateele(),textst:updatetext()})
         this.setState({element:current,st:updateele(),textst:updatetext()})
