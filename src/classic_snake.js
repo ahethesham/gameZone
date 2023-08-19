@@ -156,7 +156,7 @@ componentDidMount(){
 }
 function updaterow(){
   let width=window.innerWidth,height=window.innerHeight;
-  let w=(41)*(width/100);
+  let w=(41.66)*(width/100);
   let style={  position: 'relative',
     width:`${w}px`,
     display: 'inline'}
