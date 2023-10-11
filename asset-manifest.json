@@ -1,10 +1,8 @@
 {
   "files": {
-    "main.css": "/gameZone/static/css/main.7a764df9.css",
-    "main.js": "/gameZone/static/js/main.5b018966.js",
-    "static/media/brick.png": "/gameZone/static/media/brick.ba712ec6142223a66069.png",
+    "main.css": "/gameZone/static/css/main.0603b239.css",
+    "main.js": "/gameZone/static/js/main.839f67e3.js",
     "static/media/game.png": "/gameZone/static/media/game.5cc0ae6b53cccc14e094.png",
-    "static/media/fb_background.png": "/gameZone/static/media/fb_background.b7ff1ff439550faee873.png",
     "static/media/github.png": "/gameZone/static/media/github.21a9e1590af6a0c83751.png",
     "static/media/flappybird_back.png": "/gameZone/static/media/flappybird_back.cb7b580aff8c05810765.png",
     "static/media/tictacbg.png": "/gameZone/static/media/tictacbg.c0a54b3c10cc1c7718fe.png",
@@ -14,11 +12,11 @@
     "static/media/snake_game.png": "/gameZone/static/media/snake_game.fba1049c58d0c2670bae.png",
     "static/media/start.png": "/gameZone/static/media/start.274c9aa3c2900426e89b.png",
     "index.html": "/gameZone/index.html",
-    "main.7a764df9.css.map": "/gameZone/static/css/main.7a764df9.css.map",
-    "main.5b018966.js.map": "/gameZone/static/js/main.5b018966.js.map"
+    "main.0603b239.css.map": "/gameZone/static/css/main.0603b239.css.map",
+    "main.839f67e3.js.map": "/gameZone/static/js/main.839f67e3.js.map"
   },
   "entrypoints": [
-    "static/css/main.7a764df9.css",
-    "static/js/main.5b018966.js"
+    "static/css/main.0603b239.css",
+    "static/js/main.839f67e3.js"
   ]
 }
