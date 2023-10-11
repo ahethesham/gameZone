@@ -9,7 +9,7 @@ body{
     background-position-x:left;
     background-position-y: top;
     background-size: 300px 2000px;
-    scrollbar-color: black black;
+    scrollbar-color: rgb(32, 29, 29) black;
 
 
 }

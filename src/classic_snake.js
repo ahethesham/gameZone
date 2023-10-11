@@ -5,6 +5,7 @@ import ArrowKeysReact from 'arrow-keys-react';
 import img from './start.png'
 import pause from './pause.png'
 import game_logo from './game_logo.png'
+import { Heading } from '.';
 let mat=[]
 let count=0
 let r;
@@ -41,7 +42,8 @@ function updateboard(){
     left:`${l}px`,
     height:`${h}px`,
     overflow: 'auto',
-  //border: '1px solid rgb(72, 71, 71)',
+    backgroundColor:'black',
+  border: `${Math.min(0.1*(height/100),0.1*(width/100))}px solid rgb(72, 71, 71)`,
   }
   let main={
     height:`${height}`,
@@ -121,7 +123,7 @@ export  class Board extends React.Component{
 componentDidMount(){
     r=document.getElementById('root');
   };
-  exit(){
+  async exit(){
     s.handle()
     sem=1;
     started=0;
@@ -146,7 +148,7 @@ componentDidMount(){
             <div style={this.state.board}>
                {mat.map((mat,index)=><Row1 mat={mat} row={index}/>)}
             </div>
-            <div style={this.state.logo} onClick={this.exit}></div>
+            <div style={this.state.logo} onClick={async ()=>{await this.exit();ReactDOM.render(<Heading/>,document.getElementById('root'))}}></div>
           <hr style={this.state.hr}/>
             <Score/>
             <Start />
@@ -194,8 +196,8 @@ function updateelement(){
   height:`${h}px`,
   width:`${w}px`,
   backgroundColor:'black',
-  color:'white'
-//borderRadius:'6px'
+  color:'white',
+borderRadius:`${Math.min(0.7*(height/100),0.7*(width/100))}px`
   }
   return style;
 }

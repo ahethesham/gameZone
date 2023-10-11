@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.css'
 import image from './game_logo.png'
+import { Heading1 } from './heading';
 let b=[],address=[]
 let input =0;
 for(let i=0;i<3;i++){
@@ -301,7 +302,7 @@ function place3( b){
         str="";
         for(let j=0;j<b[i].length;j++)if(b[i][j]!=' ')str+=b[i][j];
         if(str==util){
-            alert(1)
+           // alert(1)
           for(let j=0;j<b[i].length;j++){if(b[i][j]==' ' ){b[i][j]='0';address[i][j].setState({element:'0'});return  1;}}
         }
       }
@@ -472,36 +473,17 @@ function updateboard(){
   }
   return st;
 }
-function updateexit(){
-  let width=window.innerWidth,height=window.innerHeight;
-  let bg_y=(5.63)*(height/100)
-  let bg_x=(2.97)*(width/100)
-  let r=(56.54)*(width/100)
-  let b=(47.35)*(height/100)
-  let style={ float: 'left',
-  backgroundImage: `url(${image})`,
-  backgroundRepeat: 'norepeat,norepeat',
-  backgroundPositionx:'center',
-  backgroundPositiony: 'top',
-  backgroundSize: `${bg_x}px ${bg_y}px`,
-  height: `${bg_y}px`,
-  right:`${r}px`,
-  bottom:`${b}px`,
-  width:`${bg_x}px`,
-  position: 'absolute'}
-  return style;
 
-}
 export class TicTac extends React.Component{
     constructor(props){
         super(props)
-        this.state={board:updateboard(),ex:updateexit()}
+        this.state={board:updateboard()}
         this.exit=this.exit.bind(this);
         this.resize=this.resize.bind(this)
         window.addEventListener('resize',this.resize)
     }
     resize(){
-      this.setState({board:updateboard(),ex:updateexit()})
+      this.setState({board:updateboard()})
     }
 exit(){
    b=[];address=[]
@@ -515,10 +497,12 @@ for(let i=0;i<3;i++){
 }
     render(){
         return(
+          <>
+          <Heading1/>
             <div style={this.state.board}>
                { b.map((arr,i)=><Ticrow i={i} arr={arr}/>)}
-               <div style={this.state.ex} onClick={this.exit}></div>
             </div>
+            </>
         )
     }
 }

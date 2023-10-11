@@ -2,6 +2,7 @@ import './index.css'
 import React from "react";
 import ReactDOM from 'react-dom'
 import image from './game_logo.png'
+import { Heading1 } from './heading';
 let ans=[]
 let util;
 function sudoku()
@@ -116,7 +117,7 @@ export class Sudoku extends React.Component{
       this.props.func()
     }
    handleans(){
-    let r=document.getElementById('root').childNodes[0].childNodes[0];
+    let r=document.getElementById('root').childNodes[0].childNodes[1];
     for(let i=0;i<util.length;i++)
     {
         for(let j=0;j<util[i].length;j++)
@@ -143,24 +144,13 @@ export class Sudoku extends React.Component{
     render(){
         return (
             <div>
+              <Heading1/>
             <div className="Sudoku">
             {util.map((row,index)=><Row arr={row} r={index}/>)}
             </div>
             <div className='ansButton' onClick={this.handleans}>answer</div>
             <div className='verifyButton' onClick={this.handlever}>submit</div>
-            
-            <div style={{ float: 'left',
-  backgroundImage: `url(${image})`,
-  backgroundRepeat: 'norepeat,norepeat',
-  backgroundPositionx:'center',
-  backgroundPositiony: 'top',
-  backgroundSize: '50px 50px',
-  bottom:'550px',
-  height: '50px',
-  width:'50px',
-  position: 'absolute'}} onClick={this.exit}></div>
-  <hr style={{bottom:'520px',position:'absolute'}}/>
-           </div>
+            </div>
         )
     }
 }
